@@ -37,10 +37,13 @@ list_stats(nums1)
 def remove_duplicates(lst):
     result = []
     for item in lst:
-        if item not in result:    # fill in the blank — has item been seen?
+        if item not in result:    
             result.append(item)
     return result
 numbers=[1,3,2,3,1,4]
 results=remove_duplicates(numbers)
 print("Original List:",numbers)
 print("List after removing duplicates:",results)
+
+
+
