@@ -43,7 +43,7 @@ def word_stats(text):
         "word_count":words_count,
         "unique_words":unique_words,
         "longest_word":longest_word,
-        "avg_word_length ":avg_word_length
+        "avg_word_length":avg_word_length
 
 
 
