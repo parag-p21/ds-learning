@@ -131,3 +131,69 @@ print("Expenses cleared from memory:", expenses)
 
 load_expenses_into_list()
 view_all_expenses()
+
+
+#Stage 5 
+def show_menu():
+    print("\n" + "="*35)
+    print("       EXPENSE TRACKER")
+    print("="*35)
+    print("1. Add Expense")
+    print("2. View All Expenses")
+    print("3. Filter by Category")
+    print("4. View Totals by Category")
+    print("5. Sort by Amount")
+    print("6. Save & Exit")
+    print("="*35)
+
+
+def main():
+    load_expenses_into_list()    # load saved data on startup
+    
+    while True:
+        show_menu()
+        choice = input("Choose option (1-6): ").strip()
+        
+        try:
+            if choice == "1":
+                name = input("Expense name: ").strip()
+                amount = float(input("Amount: ").strip())
+                category = input("Category: ").strip()
+                date = input("Date (YYYY-MM-DD): ").strip()
+                add_expense(name, amount, category, date)
+            
+            elif choice == "2":
+                view_all_expenses()
+            
+            elif choice == "3":
+                cat = input("Enter category to filter: ").strip()
+                results = filter_by_category(cat)
+                if results:
+                    for e in results:
+                        print(e)
+                else:
+                    print(f"No expenses found in category: {cat}")
+            
+            elif choice == "4":
+                totals_by_category()
+            
+            elif choice == "5":
+                for e in sort_by_amount(descending=True):
+                    print(e)
+            
+            elif choice == "6":
+                save_expenses()
+                print("Goodbye!")
+                break
+            
+            else:
+                print("Invalid option. Choose 1-6.")
+        
+        except ValueError as e:
+            print(f"Invalid input: {e}")
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+
+
+if __name__ == "__main__":
+    main()
