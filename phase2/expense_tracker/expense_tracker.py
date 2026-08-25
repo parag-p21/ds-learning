@@ -88,3 +88,46 @@ for e in sort_by_amount(descending=True):
 
 print("\n--- Unique categories used ---")
 print(get_unique_categories())
+
+
+
+import csv
+
+def save_expenses(filepath="expenses.csv"):
+    """Saves all expenses to a CSV file"""
+    with open(filepath, "w") as f:
+        f.write("name,amount,category,date\n")    # header row
+        for name, amount, category, date in expenses:
+            f.write(f"{name},{amount},{category},{date}\n")
+    print(f"Saved {len(expenses)} expenses to {filepath}")
+
+
+def load_expenses(filepath="expenses.csv"):
+    """Generator that yields one expense at a time from file"""
+    try:
+        with open(filepath, "r") as f:
+            next(f)    # skip header row
+            for line in f:
+                name, amount, category, date = line.strip().split(",")
+                yield (name, float(amount), category, date)
+    except FileNotFoundError:
+        print(f"No saved data found at {filepath}. Starting fresh.")
+        return
+
+
+def load_expenses_into_list(filepath="expenses.csv"):
+    """Loads expenses from file into the global expenses list"""
+    global expenses
+    expenses = list(load_expenses(filepath))
+    print(f"Loaded {len(expenses)} expenses from {filepath}")
+
+
+# Test it
+save_expenses()
+
+# Clear the in-memory list to prove loading actually works
+expenses = []
+print("Expenses cleared from memory:", expenses)
+
+load_expenses_into_list()
+view_all_expenses()
