@@ -39,13 +39,6 @@ print(validate_password("weakpass"))
 
 #Mini challenge 
 
-data = """
-Product: Laptop | Price: Rs.55000 | Stock: 45units
-Product: Phone | Price: Rs.15000 | Stock: 12units
-Product: Tablet | Price: Rs.25000 | Stock: 0units
-Product: Earbuds | Price: Rs.3000 | Stock: 8units
-"""
-
 import re
 
 data = """
